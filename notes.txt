@@ -1,0 +1,7 @@
+
+✅ ➡️ ❌ ⚠️ 📌 ⭐ 💡 👍
+
+<!-- When we use tailwind then the normal behavior of html tags like h1,h2.. p.. will not work. -->
+
+<!-- use inspect: [Toggle device toolbar] to increase or decrease the screen resolution 
+(at top left -has only icon) -->
