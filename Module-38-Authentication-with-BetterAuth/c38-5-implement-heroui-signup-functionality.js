@@ -5,17 +5,18 @@ and=>See sign-up/page.tsx
 
 "use client";
 import { signUp } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Description,InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
+import { useState } from "react";
 
 
 const SignUpPage = () => {
 
-    
-    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-       //get data from the form
+        //get data from the form
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
@@ -24,18 +25,19 @@ const SignUpPage = () => {
 
 
         //send data to mongodb
-        const {data:responseData,error}= await signUp.email({
+        const { data: responseData, error } = await signUp.email({
             name: String(data.name ?? ""),
             email: String(data.email ?? ""),
             password: String(data.password ?? "")
         });
 
-        console.log(responseData,error);
+        console.log(responseData, error);
 
 
     };
 
-
+ //togglePassword-c38-8
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <div className="flex items-center justify-center mt-10">
@@ -73,6 +75,7 @@ const SignUpPage = () => {
                 </TextField>
 
 
+                {/* password with toggle eye-c38-8 /}
                 <TextField
                     isRequired
                     minLength={8}
@@ -92,7 +95,25 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
+                    <InputGroup>
+                        <InputGroup.Input
+                            className="w-full max-w-70"
+                            type={isVisible ? "text" : "password"}
+                            placeholder="Enter your password"
+                        />
+                        <InputGroup.Suffix className="pe-0">
+                            <Button
+                                isIconOnly
+                                aria-label={isVisible ? "Hide password" : "Show password"}
+                                size="sm"
+                                variant="ghost"
+                                onPress={() => setIsVisible(!isVisible)}
+                            >
+                                {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
+                            </Button>
+
+                        </InputGroup.Suffix>
+                    </InputGroup>
                     <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
@@ -102,8 +123,8 @@ const SignUpPage = () => {
 
                 <div className="flex gap-2">
                     <Button type="submit">
-                        <Check />
-                        Submit
+
+                        Sign Out
                     </Button>
 
                     <Button type="reset" variant="secondary">
@@ -121,5 +142,7 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+
 
 */

@@ -3,13 +3,12 @@
 
 and=>See sign-in/page.tsx 
 
-
 "use client";
 import { signIn } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
-
+import { Eye, EyeSlash } from "@gravity-ui/icons";
+import { useState } from "react";
 
 
 const SignInPage = () => {
@@ -27,14 +26,17 @@ const SignInPage = () => {
         const { data: responseData, error } = await signIn.email({
             email: String(data.email ?? ""),
             password: String(data.password ?? ""),
-            rememberMe:true,
-            callbackURL:"/"
+            rememberMe: true,
+            callbackURL: "/"
         });
 
-        console.log("After submit",responseData, error);
+        console.log("After submit", responseData, error);
 
 
     };
+
+    //togglePassword-c38-8
+    const [isVisible, setIsVisible] = useState(false);
 
 
 
@@ -57,6 +59,10 @@ const SignInPage = () => {
                     <Input placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
+
+
+
+                {/* password with toggle eye-c38-8 /}
                 <TextField
                     isRequired
                     minLength={8}
@@ -76,14 +82,36 @@ const SignInPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
-                    
+                    <InputGroup>
+                        <InputGroup.Input
+                            className="w-full max-w-70"
+                            type={isVisible ? "text" : "password"}
+                            placeholder="Enter your password" 
+                        />
+                        <InputGroup.Suffix className="pe-0">
+                            <Button
+                                isIconOnly
+                                aria-label={isVisible ? "Hide password" : "Show password"}
+                                size="sm"
+                                variant="ghost"
+                                onPress={() => setIsVisible(!isVisible)}
+                            >
+                                {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
+                            </Button>
+                            
+                        </InputGroup.Suffix>
+                    </InputGroup>  
                     <FieldError />
                 </TextField>
+
+
+
+
+                {/* buttons /}
                 <div className="flex gap-2">
                     <Button type="submit">
-                        <Check />
-                        Submit
+
+                        Sign In
                     </Button>
                     <Button type="reset" variant="secondary">
                         Reset
