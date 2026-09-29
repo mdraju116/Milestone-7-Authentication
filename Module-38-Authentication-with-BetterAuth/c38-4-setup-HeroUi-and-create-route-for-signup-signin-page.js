@@ -1,5 +1,16 @@
 /* 
 
+✅✅✅Create Route for SignUp and SignIn
+
+app/(auth)/sign-up/page.tsx
+app/(auth)/sign-in/page.tsx
+
+📌NB: the (auth) is mean that this is an Route groups i.e this name will be ignored in url.
+So the url will be : https://localhost:3000/sign-up
+
+⚠️not :https://localhost:3000/auth/sign-up
+
+
 ✅✅1-Install Hero-ui for NextJS : 
 
 	-go to : https://heroui.com/en/docs/react/getting-started/quick-start

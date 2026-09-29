@@ -1,3 +1,9 @@
+/* 
+=>see the documentation : https://better-auth.com/docs/authentication/email-password
+and
+=>See sign-up/page.tsx 
+
+
 "use client";
 import { signUp } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
@@ -31,7 +37,9 @@ const SignUpPage = () => {
 
 
     return (
+
         <div className="flex items-center justify-center mt-10">
+
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
 
                 <TextField
@@ -114,3 +122,6 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+
+*/
