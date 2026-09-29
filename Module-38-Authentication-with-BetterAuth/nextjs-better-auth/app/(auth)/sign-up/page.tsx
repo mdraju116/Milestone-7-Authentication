@@ -2,6 +2,7 @@
 import { signUp } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { toast } from "react-toastify";
 
 
 const SignUpPage = () => {
@@ -13,6 +14,7 @@ const SignUpPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
+        toast.success("Successfully Signed Up.")
         console.log("Data from the form:", data);
 
 

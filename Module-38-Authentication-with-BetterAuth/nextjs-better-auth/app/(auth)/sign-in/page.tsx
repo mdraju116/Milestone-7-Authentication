@@ -1,28 +1,39 @@
 "use client";
+import { signIn } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { toast } from "react-toastify";
 
 
 
 const SignInPage = () => {
 
-
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    //get data from the form
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data: Record<string, string> = {};
-        
-        // Convert FormData to plain object
-        formData.forEach((value, key) => {
-            data[key] = value.toString();
+        const data = Object.fromEntries(formData.entries());
+
+        toast.success("Successfully Signed In.")
+        console.log("Data from the form:", data);
+
+        //send data to mongodb
+        const { data: responseData, error } = await signIn.email({
+            email: String(data.email ?? ""),
+            password: String(data.password ?? ""),
+            rememberMe:true,
+            callbackURL:"/"
         });
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+
+        console.log("After submit",responseData, error);
+
+
     };
 
 
 
     return (
-        <div>
+        <div className="flex items-center justify-center mt-10">
 
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
@@ -60,7 +71,7 @@ const SignInPage = () => {
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+                    
                     <FieldError />
                 </TextField>
                 <div className="flex gap-2">

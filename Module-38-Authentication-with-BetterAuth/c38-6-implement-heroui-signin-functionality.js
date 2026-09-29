@@ -1,36 +1,37 @@
 /* 
 =>see the documentation : https://better-auth.com/docs/authentication/email-password
 
-and=>See sign-up/page.tsx 
+and=>See sign-in/page.tsx 
+
 
 "use client";
-import { signUp } from "@/lib/auth-client";
+import { signIn } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
 
 
-const SignUpPage = () => {
 
-    
-    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+const SignInPage = () => {
+
+    //get data from the form
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-       //get data from the form
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        toast.success("Successfully Signed Up.")
+        toast.success("Successfully Signed In.")
         console.log("Data from the form:", data);
 
-
         //send data to mongodb
-        const {data:responseData,error}= await signUp.email({
-            name: String(data.name ?? ""),
+        const { data: responseData, error } = await signIn.email({
             email: String(data.email ?? ""),
-            password: String(data.password ?? "")
+            password: String(data.password ?? ""),
+            rememberMe:true,
+            callbackURL:"/"
         });
 
-        console.log(responseData,error);
+        console.log("After submit",responseData, error);
 
 
     };
@@ -39,23 +40,8 @@ const SignUpPage = () => {
 
     return (
         <div className="flex items-center justify-center mt-10">
+
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
-
-                <TextField
-                    isRequired
-                    name="name"
-                    validate={(value) => {
-                        if (value.length < 3) {
-                            return "Name must be at least 3 characters";
-                        }
-                        return null;
-                    }}
-                >
-                    <Label>Name</Label>
-                    <Input placeholder="John Doe" />
-                    <FieldError />
-                </TextField>
-
                 <TextField
                     isRequired
                     name="email"
@@ -71,8 +57,6 @@ const SignUpPage = () => {
                     <Input placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
-
-
                 <TextField
                     isRequired
                     minLength={8}
@@ -93,33 +77,26 @@ const SignUpPage = () => {
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+                    
                     <FieldError />
                 </TextField>
-
-
-
-
                 <div className="flex gap-2">
                     <Button type="submit">
                         <Check />
                         Submit
                     </Button>
-
                     <Button type="reset" variant="secondary">
                         Reset
                     </Button>
                 </div>
-
-
             </Form>
-
-
-
         </div>
     );
 };
 
-export default SignUpPage;
+export default SignInPage;
+
+
+
 
 */
