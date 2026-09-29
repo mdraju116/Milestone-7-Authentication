@@ -1,5 +1,5 @@
 /* 
-=>see-38-1b : project setup (for step -1-3)
+=>see-38-1b : project setup (for full process )
 
 
 ➡️step-4:Configure Database
@@ -57,6 +57,8 @@
    	
 	-click done
 
+	
+
 
 ######## NB ###########
 	1.-(If you see the uri again, go to clusters,click on Connect and
@@ -70,8 +72,6 @@
 
 		For security, MongoDB Atlas does not show you the existing password.
 		If you forgot it, you can edit the database user and set a new password.
-
-
 
 
 
