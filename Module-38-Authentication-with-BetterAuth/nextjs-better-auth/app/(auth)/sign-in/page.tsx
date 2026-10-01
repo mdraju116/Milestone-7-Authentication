@@ -15,7 +15,7 @@ const SignInPage = () => {
         const data = Object.fromEntries(formData.entries());
 
         toast.success("Successfully Signed In.")
-        console.log("Data from the form:", data);
+        // console.log("Data from the form:", data);
 
         //send data to mongodb
         const { data: responseData, error } = await signIn.email({
@@ -26,9 +26,20 @@ const SignInPage = () => {
         });
 
         console.log("After submit", responseData, error);
-
-
     };
+
+
+    //google sign In
+     const handleGoogleSignIn =async()=>{
+        const resData =await signIn.social({
+            provider : "google"
+        })
+        console.log("After google sign in", resData)
+     }
+
+
+
+
 
     //togglePassword-c38-8
     const [isVisible, setIsVisible] = useState(false);
@@ -54,34 +65,6 @@ const SignInPage = () => {
                     <Input placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
-
-
-
-
-                {/* <TextField
-                    isRequired
-                    minLength={8}
-                    name="password"
-                    type="password"
-                    validate={(value) => {
-                        if (value.length < 8) {
-                            return "Password must be at least 8 characters";
-                        }
-                        if (!/[A-Z]/.test(value)) {
-                            return "Password must contain at least one uppercase letter";
-                        }
-                        if (!/[0-9]/.test(value)) {
-                            return "Password must contain at least one number";
-                        }
-                        return null;
-                    }}
-                >
-                    <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
-
-                    <FieldError />
-                </TextField> */}
-
 
 
                 {/* password with toggle eye-c38-8 */}
@@ -139,6 +122,8 @@ const SignInPage = () => {
                         Reset
                     </Button>
                 </div>
+
+                <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
             </Form>
         </div>
     );
