@@ -45,7 +45,14 @@ const SignInPage = () => {
         })
         console.log("After Github sign in", resData)
      }
-
+     
+    //discord sign In
+     const handleDiscordSignIn =async()=>{
+        const resData =await signIn.social({
+            provider : "discord"
+        })
+        console.log("After Github sign in", resData)
+     }
 
 
     //togglePassword-c38-8
@@ -132,6 +139,7 @@ const SignInPage = () => {
 
                 <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
                 <Button onClick={handleGithubSignIn}>Sign In with Github</Button>
+                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button>
             </Form>
         </div>
     );

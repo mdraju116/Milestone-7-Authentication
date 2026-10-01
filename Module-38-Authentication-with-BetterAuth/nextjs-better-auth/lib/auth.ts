@@ -12,7 +12,7 @@ export const auth = betterAuth({
   account: {
 		accountLinking: {
 			enabled: true,
-			trustedProviders: ["google", "github"], // Add providers you trust
+			trustedProviders: ["google", "github","discord"], // Add providers you trust
 		},
 	},
   socialProviders: {
@@ -24,7 +24,11 @@ export const auth = betterAuth({
             clientId: process.env.GITHUB_CLIENT_ID as string, 
             clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
         }, 
-  },
+      discord: { 
+        clientId: process.env.DISCORD_CLIENT_ID as string, 
+        clientSecret: process.env.DISCORD_CLIENT_SECRET as string, 
+      },
+},
   
 
     database: mongodbAdapter(db, {
