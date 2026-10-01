@@ -38,8 +38,8 @@
                         -and paste here
                 -Create
 
-                -Now  copy the Client Id : (github push problem)
-                -and paste to .env file as : GOOGLE_xxxxxxxxx _ID =
+                -Now  copy the Client Id : 
+                -and paste to .env file as : GOOGLE_xxxxxxxxx _ID = (github push problem) xxx=CLIENT
                 
                 -again copy the secret key : 
                 -and paste to .env file as : GOOGLE_xxxxxxxxx_SECRET=
@@ -58,11 +58,19 @@
                         clientSecret: process.env.GOOGLE_xxxxxxxxx_SECRET as string, 
                     },
                 },
-
-        -and paste to lib/auth.ts file like this:
+        -
+        -and paste to lib/auth.ts file like this: (also add trustproviders)
                 export const auth = betterAuth({
                 emailAndPassword: {
                     enabled: true,
+                },
+                
+                //- Set trustedProviders :
+                account: {
+                    accountLinking: {
+                        enabled: true,
+                        trustedProviders: ["google", "github"], // Add providers you trust
+                    },
                 },
                 socialProviders: {
                     google: {
@@ -78,9 +86,11 @@
                     }),
                 });
 
-
-
          -now replace the client id and secret key (if you had changed the name in .env file)
+
+        
+      
+
 
 
 ✅Step-3 :Usage =>Sign In with Google
