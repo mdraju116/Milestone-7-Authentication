@@ -24,7 +24,7 @@ const SignUpPage = () => {
             name: String(data.name ?? ""),
             email: String(data.email ?? ""),
             password: String(data.password ?? ""),
-            
+            // callbackURL: "/sign-in"   //not working
         });
         
         

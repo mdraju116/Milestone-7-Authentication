@@ -1,3 +1,11 @@
+/* 
+-Go to : https://heroui.com/en/docs/react/components/fieldset
+-Copy the form data and paste to page.tsx
+-Modify the formdata and function according to the Better auth : https://better-auth.com/docs/concepts/users-accounts
+-The Modified Code is here
+
+
+=>profile/page.tsx
 
 "use client";
 
@@ -87,3 +95,7 @@ export default function ProfilePage() {
  </div>
   );
 }
+
+
+
+*/

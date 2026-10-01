@@ -14,7 +14,7 @@ const SignInPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        toast.success("Successfully Signed In.")
+        
         // console.log("Data from the form:", data);
 
         //send data to mongodb
@@ -24,6 +24,12 @@ const SignInPage = () => {
             rememberMe: true,
             callbackURL: "/"
         });
+
+        if (error) {
+            console.log(error);
+            return;
+        }
+        toast.success("Successfully Signed In.")
 
         console.log("After submit", responseData, error);
     };

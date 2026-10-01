@@ -23,18 +23,13 @@ export default function Navbar() {
       <li> <Link href="/features">Features</Link> </li>
       <li> <Link href="/about-us">About us</Link> </li>
 
-     {/* See dashboard and profile only after login */}
-
-      {session?.user &&
-       <li> <Link href="/dashboard" className="font-medium text-accent" aria-current="page"> Dashboard </Link> </li>
-      }
-    
-      { session?.user &&   
+     {/* See dashboard and profile after login only*/}
+      {session?.user && <>
+          <li> <Link href="/dashboard" className="font-medium text-accent" aria-current="page"> Dashboard </Link> </li>
           <li> <Link href="/profile">Profile</Link> </li>
+      </>
       }
-
-
-      {/* to protect visiting /profile while it is still invisible/not logged in - use proxy.ts */}
+      {/*c39-4: to protect visiting /profile while it is still invisible/not logged in - use proxy.ts */}
       
   </>
 
