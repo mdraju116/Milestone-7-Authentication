@@ -20,9 +20,22 @@ export default function Navbar() {
   }
 
   const links =<>
-      <li> <Link href="#">Features</Link> </li>
-      <li> <Link href="#" className="font-medium text-accent" aria-current="page"> Dashboard </Link> </li>
-      <li> <Link href="#">Pricing</Link> </li>
+      <li> <Link href="/features">Features</Link> </li>
+      <li> <Link href="/about-us">About us</Link> </li>
+
+     {/* See dashboard and profile only after login */}
+
+      {session?.user &&
+       <li> <Link href="/dashboard" className="font-medium text-accent" aria-current="page"> Dashboard </Link> </li>
+      }
+    
+      { session?.user &&   
+          <li> <Link href="/profile">Profile</Link> </li>
+      }
+
+
+      {/* to protect visiting /profile while it is still invisible/not logged in - use proxy.ts */}
+      
   </>
 
 
@@ -40,6 +53,8 @@ export default function Navbar() {
         </>
     }
   </>
+
+
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
@@ -80,7 +95,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             {/* <Logo /> */}
-            <p className="font-bold">ACME</p>
+            <Link href="/" className="font-bold">ACME</Link>
           </div>
         </div>
 

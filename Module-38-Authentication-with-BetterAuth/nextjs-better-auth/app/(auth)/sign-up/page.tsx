@@ -1,13 +1,14 @@
 "use client";
 import { signUp } from "@/lib/auth-client";
-import { Button, Description,InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Button, Description, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
 
+    const router = useRouter();
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -15,7 +16,6 @@ const SignUpPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        toast.success("Successfully Signed Up.")
         console.log("Data from the form:", data);
 
 
@@ -23,15 +23,22 @@ const SignUpPage = () => {
         const { data: responseData, error } = await signUp.email({
             name: String(data.name ?? ""),
             email: String(data.email ?? ""),
-            password: String(data.password ?? "")
+            password: String(data.password ?? ""),
+            
         });
+        
+        
+        if (error) {
+            console.log(error);
+            return;
+        }
+        toast.success("Successfully Signed Up.");
+        router.push("/sign-in"); //to move from sign-up page
 
         console.log(responseData, error);
-
-
     };
 
- //togglePassword-c38-8
+    //togglePassword-c38-8
     const [isVisible, setIsVisible] = useState(false);
 
     return (
@@ -70,7 +77,7 @@ const SignUpPage = () => {
                 </TextField>
 
 
-            {/* <TextField
+                {/* <TextField
                     isRequired
                     minLength={8}
                     name="password"
@@ -144,8 +151,7 @@ const SignUpPage = () => {
 
                 <div className="flex gap-2">
                     <Button type="submit">
-
-                        Sign Out
+                        Sign Up
                     </Button>
 
                     <Button type="reset" variant="secondary">

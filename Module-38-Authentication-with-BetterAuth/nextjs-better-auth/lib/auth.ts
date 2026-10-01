@@ -8,6 +8,7 @@ const db = client.db('1st-db');
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
+    autoSignIn: false,
   },
   account: {
 		accountLinking: {
