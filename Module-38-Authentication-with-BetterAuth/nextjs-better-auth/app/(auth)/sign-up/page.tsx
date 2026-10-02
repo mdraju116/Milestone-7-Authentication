@@ -24,7 +24,7 @@ const SignUpPage = () => {
             name: String(data.name ?? ""),
             email: String(data.email ?? ""),
             password: String(data.password ?? ""),
-            // callbackURL: "/sign-in"   //not working
+            // callbackURL: "/sign-in"   //not working ,that's why using router
         });
         
         
@@ -33,9 +33,10 @@ const SignUpPage = () => {
             return;
         }
         toast.success("Successfully Signed Up.");
+        toast.error("Verify Your Email first");
         router.push("/sign-in"); //to move from sign-up page
 
-        console.log(responseData, error);
+        console.log("After signed-up",responseData, error);
     };
 
     //togglePassword-c38-8
