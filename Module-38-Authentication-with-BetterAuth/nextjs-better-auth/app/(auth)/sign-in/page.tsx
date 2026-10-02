@@ -28,6 +28,7 @@ const SignInPage = () => {
 
         if (error) {
             console.log(error);
+            toast.error("Failed to sign in.")
             return;
         }
         toast.success("Successfully Signed In.")

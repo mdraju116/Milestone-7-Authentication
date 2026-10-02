@@ -22,9 +22,10 @@ const ForgotPasswordPage = () => {
 
         if (error) {
             console.log(error);
+            
             return;
         }
-        toast.success("Successfully submitted .")
+        toast.success("Check Your Email .")
 
         console.log("After submit", responseData, error);
         //the response is like this=>( requestPasswordReset tells Mongodb)
