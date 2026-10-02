@@ -27,17 +27,15 @@ export default function ProfilePage() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //get the data from the form
-    const formData = new FormData(e.currentTarget);
-    const userData =Object.fromEntries(formData.entries());
+  //get the data from the form
+   const formData = new FormData(e.currentTarget);
+   const userData =Object.fromEntries(formData.entries());
+   console.log("Given form Data:",userData);
     
-
-    console.log("Given form Data:",userData);
-    const name = formData.get("name");
 
     //update the data
     const updateData = await updateUser({
-      name: typeof name === "string" ? name : undefined,
+      name: String(userData.name ?? ""),
       
     });
     console.log("Updated Data:",updateData);

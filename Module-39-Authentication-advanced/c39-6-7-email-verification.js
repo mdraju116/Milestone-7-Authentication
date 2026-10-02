@@ -1,9 +1,18 @@
 /* 
 
-
-
 ✅✅-Go to : https://better-auth.com/docs/authentication/email-password
 -Just see the docs : Email verification
+
+
+⚠️⚠️NB:
+As it is an testing/local domain, not real. So the verification mail will only send to the account(md980) 
+which is signed-in at the https://resend.com/onboarding . Any ohter email will not receive the verificatoin mail.
+
+-So create account with that email(md980) only
+
+-To send email at others gmail, first provide the actual domain (paid).
+
+
 
 ✅✅-Go to : https://resend.com/docs/send-with-better-auth
 -Follow the steps:
@@ -57,6 +66,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 		expiresIn: 3600 // 1 hour
 
     -and paste at the end of the email verification
+
+
 
 
 

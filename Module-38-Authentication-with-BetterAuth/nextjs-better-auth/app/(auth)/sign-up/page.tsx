@@ -24,7 +24,8 @@ const SignUpPage = () => {
             name: String(data.name ?? ""),
             email: String(data.email ?? ""),
             password: String(data.password ?? ""),
-            // callbackURL: "/sign-in"   //not working ,that's why using router
+            //callbackURL: "/sign-in"   //not working ,that's why using router
+            //redirectTo: "/sign-in",   //we can use this too
         });
         
         

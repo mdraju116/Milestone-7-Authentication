@@ -1,93 +1,50 @@
-"use client";
-import { signIn } from "@/lib/auth-client";
-import { Button, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+"use client"
+
+import { useSearchParams } from "next/navigation";
+import { resetPassword } from "@/lib/auth-client";
+import { Button, InputGroup, FieldError, Form,  Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
-import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useState } from "react";
-import Link from "next/link";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
 
 
-const SignInPage = () => {
+const ResetPasswordForm = () => {
+    const searchParams=useSearchParams();
+    const token = searchParams.get("token") ?? undefined;
+
+    //togglePassword-c38-8
+    const [isVisible, setIsVisible] = useState(false);
 
     //get data from the form
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
-
-        
         // console.log("Data from the form:", data);
 
+
         //send data to mongodb
-        const { data: responseData, error } = await signIn.email({
-            email: String(data.email ?? ""),
-            password: String(data.password ?? ""),
-            rememberMe: true,
-            callbackURL: "/"
+        const { data: responseData, error } = await resetPassword({
+            newPassword: String(data.password ?? ""),
+            token
         });
 
         if (error) {
             console.log(error);
             return;
         }
-        toast.success("Successfully Signed In.")
-
+        toast.success("You have reset password Successfully .")
         console.log("After submit", responseData, error);
     };
 
 
-    //google sign In
-     const handleGoogleSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "google"
 
-        })
-        console.log("After google sign in", resData)
-     }
-
-     //github sign In
-      const handleGithubSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "github"
-        })
-        console.log("After Github sign in", resData)
-     }
-     
-    //discord sign In
-     const handleDiscordSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "discord"
-        })
-        console.log("After Github sign in", resData)
-     }
-
-
-    //togglePassword-c38-8
-    const [isVisible, setIsVisible] = useState(false);
-
-
-
+    
     return (
         <div className="flex items-center justify-center mt-10">
 
             <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
-                <TextField
-                    isRequired
-                    name="email"
-                    type="email"
-                    validate={(value) => {
-                        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                            return "Please enter a valid email address";
-                        }
-                        return null;
-                    }}
-                >
-                    <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
-                    <FieldError />
-                </TextField>
-
-
+              
                 {/* password with toggle eye-c38-8 */}
                 <TextField
                     isRequired
@@ -137,21 +94,22 @@ const SignInPage = () => {
                 <div className="flex gap-2">
                     <Button type="submit">
 
-                        Sign In
+                        Set Password
                     </Button>
                     <Button type="reset" variant="secondary">
-                        Reset
+                        Clear
                     </Button>
                 </div>
 
-                <h2>Forgot Password? <Link href="/forgot-password" className="text-blue-600 font-medium">CLICK HERE</Link></h2>
-
-                <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
-                <Button onClick={handleGithubSignIn}>Sign In with Github</Button>
-                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button>
+              
             </Form>
         </div>
     );
+
+
+
+
+
 };
 
-export default SignInPage;
+export default ResetPasswordForm;

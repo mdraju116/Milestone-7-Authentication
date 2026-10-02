@@ -22,14 +22,12 @@ export default function ProfilePage() {
     //get the data from the form
     const formData = new FormData(e.currentTarget);
     const userData =Object.fromEntries(formData.entries());
-    
-
     console.log("Given form Data:",userData);
-    const name = formData.get("name");
+    
 
     //update the data
     const updateData = await updateUser({
-      name: typeof name === "string" ? name : undefined,
+      name: String(userData.name ?? ""),
       
     });
     console.log("Updated Data:",updateData);
