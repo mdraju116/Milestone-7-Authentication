@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Noto_Serif_Bengali} from "next/font/google";
+import { Noto_Serif_Bengali } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./components/shared/Header";
 
 const notoSerifBengali = Noto_Serif_Bengali({
-  subsets: ["latin","bengali"],
+  subsets: ["latin", "bengali"],
 });
 
-
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Bangla News",
@@ -17,9 +22,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // data-theme="dark"
+      // data-theme="light"
+      // className={`${geistSans.variable} ${geistMono.variable} h-full antialiased theme-dark`}  //full black
       className={`${notoSerifBengali} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+
+        <Header></Header>
+        <main className="flex-1">
+          {children}
+        </main>
+
+      </body>
     </html>
   );
 }
