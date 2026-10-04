@@ -1,7 +1,7 @@
 
 import { ArticleType } from "@/app/page";
-import Image from "next/image";
 import Link from "next/link";
+import MainNewsCard from "./MainNewsCard";
 
 interface MainNewsProps {
     mainArticles: ArticleType[]
@@ -14,35 +14,21 @@ const MainNews = ({  mainArticles }: MainNewsProps) => {
     // console.log(firstNews)
     const [firstNews, ...restNews] = mainArticles
 
-    const firstNewsDate = firstNews.firstPublished
-                            ? new Date(firstNews.firstPublished).toLocaleDateString("bn-BD", { dateStyle: "full" })
-                            : "";
-                            
+   
 
 
     return (
         <div className="grid grid-cols-2 gap-4 ">
 
-            {/* First News */}
+            {/* First News as card-item*/}
             <Link  href={`/news/${firstNews.id}`}
                 className="card bg-base-100 shadow-sm hover:shadow-md transition"
             >
-                <figure>
-                    <Image  src={firstNews.imageUrl}  alt="first-news"   width={600}  height={600}
-                        className="w-full"
-                    />
-                </figure>
-
-                <div className="card-body">
-                    <h1 className="text-red-800 font-medium"> {firstNews.category} </h1>
-                    <h2 className="card-title text-justify hover:text-red-700"> {firstNews.title} </h2>
-                    <p className="line-clamp-3 text-justify"> {firstNews.description} </p>
-                    <p className="text-gray-400 text-xs"> {firstNewsDate} </p>
-                </div>
+                <MainNewsCard firstNews={firstNews}></MainNewsCard>
             </Link>
 
 
-            {/* Rest News */}
+            {/* Rest News as list-item*/}
             <div className="card bg-base-100 shadow-sm">
                 <ul className="h-full">
 

@@ -34,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header></Header>
         <Navbar></Navbar>
         <Marquee></Marquee>
-        <main className="flex-1">
+        <main className="flex-1 max-w-7xl mx-auto">
           {children}
         </main>
 
