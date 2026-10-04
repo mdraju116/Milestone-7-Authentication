@@ -1,20 +1,23 @@
 
-import { MainArticleType } from "@/app/page";
+import { ArticleType } from "@/app/page";
 import Image from "next/image";
 import Link from "next/link";
 
 interface MainNewsProps {
-    mainArticle: MainArticleType[]
+    mainArticles: ArticleType[]
 }
 
 
-const MainNews = ({  mainArticle }: MainNewsProps) => {
+const MainNews = ({  mainArticles }: MainNewsProps) => {
     // const firstNews = mainArticle[0];
     // const restNews = mainArticle.slice(1);
     // console.log(firstNews)
-    const [firstNews, ...restNews] = mainArticle
+    const [firstNews, ...restNews] = mainArticles
 
-    const firstNewsDate = new Date(firstNews.firstPublished).toLocaleDateString("bn-BD", { dateStyle: "full" })
+    const firstNewsDate = firstNews.firstPublished
+                            ? new Date(firstNews.firstPublished).toLocaleDateString("bn-BD", { dateStyle: "full" })
+                            : "";
+                            
 
 
     return (
