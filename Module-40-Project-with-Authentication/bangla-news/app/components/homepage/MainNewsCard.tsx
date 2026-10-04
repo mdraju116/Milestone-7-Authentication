@@ -1,5 +1,6 @@
 import { ArticleType } from "@/app/page";
 import Image from "next/image";
+import Link from "next/link";
 
 interface FirstNewsProps{
     firstNews:ArticleType
@@ -13,6 +14,10 @@ const MainNewsCard = ({firstNews}:FirstNewsProps) => {
                             
     return (
         <div>
+
+            <Link  href={`/news-details/${firstNews.id}`}
+                className="card bg-base-100 shadow-sm hover:shadow-md transition"
+            >
              <figure>
                     <Image  src={firstNews.imageUrl}  alt="first-news"   width={600}  height={600}
                         className="w-full"
@@ -25,6 +30,8 @@ const MainNewsCard = ({firstNews}:FirstNewsProps) => {
                     <p className="line-clamp-3 text-justify"> {firstNews.description} </p>
                     <p className="text-gray-400 text-xs"> {firstNewsDate} </p>
                 </div>
+            </Link>    
+            
         </div>
     );
 };

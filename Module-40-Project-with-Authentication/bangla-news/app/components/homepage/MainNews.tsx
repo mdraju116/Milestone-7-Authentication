@@ -20,13 +20,10 @@ const MainNews = ({  mainArticles }: MainNewsProps) => {
     return (
         <div className="grid grid-cols-2 gap-4 ">
 
-            {/* First News as card-item*/}
-            <Link  href={`/news/${firstNews.id}`}
-                className="card bg-base-100 shadow-sm hover:shadow-md transition"
-            >
-                <MainNewsCard firstNews={firstNews}></MainNewsCard>
-            </Link>
+            {/* First News as card-item*/}  
+            <MainNewsCard firstNews={firstNews} />
 
+            
 
             {/* Rest News as list-item*/}
             <div className="card bg-base-100 shadow-sm">
@@ -40,7 +37,7 @@ const MainNews = ({  mainArticles }: MainNewsProps) => {
                                     : ""
                             }
                         >
-                            <Link  href={`/news/${news.id}`} className="block p-4 hover:bg-base-200 transition" >
+                            <Link  href={`/news-details/${news.id}`} className="block p-4 hover:bg-base-200 transition" >
                                 <h1 className="text-red-800  text-sm mb-1"> {news.category} </h1>
                                 <h2 className="text-sm font-medium leading-5 text-justify hover:text-red-700"> {news.title} </h2>
                             </Link>
