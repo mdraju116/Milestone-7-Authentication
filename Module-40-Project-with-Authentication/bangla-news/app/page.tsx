@@ -1,5 +1,6 @@
 
 import MainNews from "./components/homepage/MainNews"
+import MostRead from "./components/homepage/MostRead";
 import OtherNewsCard from "./components/homepage/OtherNewsCard";
 
 
@@ -83,13 +84,14 @@ export default async function Home() {
         </div>
 
 
-
-
-
         {/* most read in hero rightside */}
-        <div className=" col-span-1 bg-green-600 p-10">
-          <p>সর্বাধিক পঠিত</p>
+        <div className=" col-span-1">
+          
+          <MostRead/>
         </div>
+
+
+
 
       </div>
 
