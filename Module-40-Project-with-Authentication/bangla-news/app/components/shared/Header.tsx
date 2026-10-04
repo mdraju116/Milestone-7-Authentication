@@ -1,31 +1,40 @@
+
+
 import Image from "next/image";
 import logo from "@/public/logo.webp"
+import Link from "next/link";
 
 const Header = () => {
     const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" })
 
     return (
-        <div className="px-24 flex justify-between items-center mt-5">
+        <header >
+            <Link href="/" >
 
-            <div className="flex gap-3 mx-auto pl-50 ">
-                <Image src={logo} alt="logo" width={50} height={40}></Image>
+                <div className="px-24 flex justify-between items-center mt-2">
 
-                <div className="space-y-1">
-                    <h1 className="text-red-700 font-bold text-2xl ">Bangla News 24</h1>
-                    <p className="text-gray-600 text-xs">{date}</p>
+                    <div className="flex gap-3 mx-auto pl-50 ">
+                        <Image src={logo} alt="logo" height={40} width={50} style={{ width: 'auto', height: 'auto' }} />
+
+                        <div className="space-y-1">
+                            <h1 className="text-red-700 font-bold text-2xl ">Bangla News 24</h1>
+                            <p className="text-gray-600 text-xs">{date}</p>
+                        </div>
+                    </div>
+
+                    <div className="flex gap-2">
+
+                        <button className="btn ">সাইন ইন</button>
+                        <button className="btn bg-red-700 text-white">সাইন আপ</button>
+
+                    </div>
                 </div>
-            </div>
+                
+            </Link>
 
-            <div className="flex gap-2">
-
-                <button className="btn ">সাইন ইন</button>
-                <button className="btn bg-red-700 text-white">সাইন আপ</button>
-
-            </div>
+        </header>
 
 
-
-        </div>
     );
 };
 

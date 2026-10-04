@@ -19,7 +19,7 @@ const Navbar = async () => {
     return (
         // <div className="container px-24 mx-auto mt-4 ">
 
-            <div className=" flex justify-center gap-4 mt-5 font-medium">
+            <div className=" flex justify-center gap-4 mt-3 ">
                 <Link href={"/"} className=" hover:bg-blue-400 hover:text-white p-1 rounded">হোম</Link>
                 {
                     filteredItems.map((item, index) => (

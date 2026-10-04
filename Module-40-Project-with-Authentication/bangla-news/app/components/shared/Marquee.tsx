@@ -1,7 +1,7 @@
 
 import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
-import { GoDotFill } from "react-icons/go";
+
 
 
 interface LatestHeadline {
@@ -16,9 +16,9 @@ const Marquee = async () => {
 
 
     return (
-        <div className="bg-red-700 text-white flex ">
+        <div className="bg-red-700 text-white flex mt-3">
 
-            <div className="flex max-w-7xl mx-auto px-4">
+            <div className="flex max-w-7xl mx-auto ">
 
                 <div className="bg-red-800 py-1 px-5  ">
                     সর্বশেষ
