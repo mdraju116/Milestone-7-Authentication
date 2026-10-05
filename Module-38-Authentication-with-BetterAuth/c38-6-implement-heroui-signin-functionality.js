@@ -5,7 +5,8 @@ and=>See sign-in/page.tsx
 
 		-go to : https://heroui.com/en/docs/react/components/form
 		-and copy the full form , 
-		-paste to signin/page.tsx and then modify
+		-paste to signin/page.tsx and
+		-then modify as your need
 		
 		-install : react-toastify and gravity-ui/icons
 

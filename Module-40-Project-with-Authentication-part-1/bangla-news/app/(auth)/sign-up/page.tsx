@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "@/lib/auth-client";
 
 const SignUpPage = () => {
 
@@ -47,6 +48,24 @@ const SignUpPage = () => {
     const [isVisible, setIsVisible] = useState(false);
 
 
+     //google sign In
+        const handleGoogleSignIn = async () => {
+            const resData = await signIn.social({
+                provider: "google"
+    
+            })
+            console.log("After google sign in", resData)
+        }
+    
+        //github sign In
+        const handleGithubSignIn = async () => {
+            const resData = await signIn.social({
+                provider: "github"
+            })
+            console.log("After Github sign in", resData)
+        }
+    
+      
     return (
         <div className="flex items-center justify-center mt-10">
             <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
@@ -148,9 +167,13 @@ const SignUpPage = () => {
                 <div className="flex justify-center gap-2">
                     <Button type="submit">
                         সাইন আপ করুন
-                    </Button>
+                    </Button>             
+                </div>
 
-                   
+                <div className="flex">
+                    <button onClick={handleGoogleSignIn} className="btn">Sign In with Google</button>
+                    <button onClick={handleGithubSignIn} className="btn">Sign In with Github</button>
+                
                 </div>
 
 

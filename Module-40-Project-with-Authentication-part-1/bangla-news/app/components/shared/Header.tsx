@@ -5,19 +5,11 @@ import Image from "next/image";
 import logo from "@/public/logo.webp"
 import Link from "next/link";
 import UserInfo from "./UserInfo";
-import { Spinner } from "@heroui/react";
-import { useSession } from "@/lib/auth-client";
+
 
 const Header = () => {
     const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" })
     
-     const {  isPending } = useSession();
-        if (isPending) {
-            return <div className="flex flex-col items-center gap-2">
-                <Spinner color="success" />
-                <span className="text-xs text-muted">Loading...</span>
-            </div>
-        }
     
 
     return (

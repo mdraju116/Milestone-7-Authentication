@@ -2,7 +2,8 @@
 "use client"
 
 import { useState } from "react";
-import { Link, Button, Spinner } from "@heroui/react";
+import Link from "next/link";
+import { Button, Spinner } from "@heroui/react";
 import { signOut, useSession } from "@/lib/auth-client";
 
 export default function Navbar() {

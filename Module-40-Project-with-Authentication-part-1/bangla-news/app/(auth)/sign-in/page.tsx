@@ -15,7 +15,7 @@ const SignInPage = () => {
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        
+
         // console.log("Data from the form:", data);
 
         //send data to mongodb
@@ -37,31 +37,24 @@ const SignInPage = () => {
     };
 
 
-    /* //google sign In
-     const handleGoogleSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "google"
+    //google sign In
+    const handleGoogleSignIn = async () => {
+        const resData = await signIn.social({
+            provider: "google"
 
         })
         console.log("After google sign in", resData)
-     }
+    }
 
-     //github sign In
-      const handleGithubSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "github"
+    //github sign In
+    const handleGithubSignIn = async () => {
+        const resData = await signIn.social({
+            provider: "github"
         })
         console.log("After Github sign in", resData)
-     }
-     
-    //discord sign In
-     const handleDiscordSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "discord"
-        })
-        console.log("After Github sign in", resData)
-     } */
+    }
 
+  
 
     //togglePassword-c38-8
     const [isVisible, setIsVisible] = useState(false);
@@ -113,7 +106,7 @@ const SignInPage = () => {
                         <InputGroup.Input
                             className="w-full "
                             type={isVisible ? "text" : "password"}
-                            placeholder="পাসওয়ার্ড লিখুন" 
+                            placeholder="পাসওয়ার্ড লিখুন"
                         />
                         <InputGroup.Suffix className="pe-0">
                             <Button
@@ -125,9 +118,9 @@ const SignInPage = () => {
                             >
                                 {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
                             </Button>
-                            
+
                         </InputGroup.Suffix>
-                    </InputGroup>  
+                    </InputGroup>
                     <FieldError />
                 </TextField>
 
@@ -139,16 +132,21 @@ const SignInPage = () => {
                         সাইন ইন করুন
                     </Button>
 
-                   
+
                 </div>
 
-                <h2 className="text-center">পাসওয়ার্ড ভুলে গেছেন ?  
+                <h2 className="text-center">পাসওয়ার্ড ভুলে গেছেন ?
                     <Link href="/forgot-password" className="text-blue-600 font-medium">CLICK HERE</Link>
                 </h2>
 
-                {/* <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
-                <Button onClick={handleGithubSignIn}>Sign In with Github</Button>
-                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button> */}
+                <div className="flex">
+                    <button onClick={handleGoogleSignIn} className="btn">Sign In with Google</button>
+                    <button onClick={handleGithubSignIn} className="btn">Sign In with Github</button>
+                   
+
+                </div>
+
+
             </Form>
         </div>
     );

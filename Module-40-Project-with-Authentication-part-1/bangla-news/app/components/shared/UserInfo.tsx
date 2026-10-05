@@ -1,16 +1,24 @@
 "use client"
 
 import Link from "next/link";
-import { Button } from "@heroui/react";
 import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
+import { Spinner } from "@heroui/react";
 
 
 const UserInfo = () => {
 
-    const { data: session } = useSession();
+
+    const { data: session, isPending } = useSession();
+    if (isPending) {
+        return <div className="flex flex-col items-center gap-2">
+            <Spinner color="success" />
+            <span className="text-xs text-muted">Loading...</span>
+        </div>
+    }
     // console.log(session);
 
+    
     return (
         <div>
 
@@ -18,16 +26,15 @@ const UserInfo = () => {
             {
                 session?.user ? <>
                     <div className="flex flex-col items-center">
-                    
-                        {session.user.image && <Image src={session.user.image} alt="User's Image" 
-                            width={40} height={40} className="rounded-full object-cover" 
+
+                        {session.user.image && <Image src={session.user.image} alt="User's Image"
+                            width={40} height={40} className="rounded-full object-cover"
                         />}
                         <span>{session.user.name}</span>
-                       
-                        <button onClick={() => { signOut() }} className="btn bg-red-700 text-white" > সাইন আউট </button>
-                         
-                    </div>
 
+                        <button onClick={() => { signOut() }} className="btn bg-red-700 text-white" > সাইন আউট </button>
+
+                    </div>
 
                 </> : <>
                     <Link href={"/sign-in"}> <button className="btn ">সাইন ইন</button> </Link>

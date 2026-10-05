@@ -5,7 +5,10 @@ and=>See sign-up/page.tsx
 
 		-go to : https://heroui.com/en/docs/react/components/form
 		-and copy the full form , 
-		-paste to signup/page.tsx and then modify
+		-paste to signup/page.tsx and
+		-then modify as your need
+		
+		-install : react-toastify and gravity-ui/icons
 
 NB: this code had changed after module-39, so this is primary sign-up,
 		see main projects sign-up/page.tsx for update one
@@ -49,7 +52,7 @@ const SignUpPage = () => {
 
     return (
         <div className="flex items-center justify-center mt-10">
-            <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+            <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
 
                 <TextField
                     isRequired
@@ -103,9 +106,9 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <InputGroup>
+                    <InputGroup className="w-full">
                         <InputGroup.Input
-                            className="w-full max-w-70"
+                            className="w-full "
                             type={isVisible ? "text" : "password"}
                             placeholder="Enter your password"
                         />
