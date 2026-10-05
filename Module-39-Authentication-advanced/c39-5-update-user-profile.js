@@ -4,6 +4,7 @@
 -Modify the formdata and function according to the Better auth : https://better-auth.com/docs/concepts/users-accounts
 -The Modified Code is here
 
+NB: add {updateUser} at auth-client.ts
 
 =>profile/page.tsx
 
