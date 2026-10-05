@@ -31,10 +31,12 @@ const SignUpPage = () => {
         
         if (error) {
             console.log(error);
+            toast.error(`Error: ${error}`);
             return;
         }
         toast.success("Successfully Signed Up.");
-        toast.error("Verify Your Email first");
+        toast.info("Verify Your Email first");
+		
         router.push("/sign-in"); //to move from sign-up page
 
         console.log("After signed-up",responseData, error);
@@ -45,7 +47,7 @@ const SignUpPage = () => {
 
     return (
         <div className="flex items-center justify-center mt-10">
-            <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+            <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
 
                 <TextField
                     isRequired
@@ -125,9 +127,9 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <InputGroup>
+                    <InputGroup className="w-full ">
                         <InputGroup.Input
-                            className="w-full max-w-70"
+                            className="w-full "
                             type={isVisible ? "text" : "password"}
                             placeholder="Enter your password"
                         />

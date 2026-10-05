@@ -37,7 +37,7 @@ const SignInPage = () => {
     };
 
 
-    //google sign In
+    /* //google sign In
      const handleGoogleSignIn =async()=>{
         const resData =await signIn.social({
             provider : "google"
@@ -60,7 +60,7 @@ const SignInPage = () => {
             provider : "discord"
         })
         console.log("After Github sign in", resData)
-     }
+     } */
 
 
     //togglePassword-c38-8
@@ -71,7 +71,7 @@ const SignInPage = () => {
     return (
         <div className="flex items-center justify-center mt-10">
 
-            <Form className="flex  w-88 flex-col gap-4" onSubmit={onSubmit}>
+            <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired
                     name="email"
@@ -83,8 +83,8 @@ const SignInPage = () => {
                         return null;
                     }}
                 >
-                    <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Label>ইমেইল</Label>
+                    <Input placeholder="আপনার ইমেইল লিখুন" />
                     <FieldError />
                 </TextField>
 
@@ -108,12 +108,12 @@ const SignInPage = () => {
                         return null;
                     }}
                 >
-                    <Label>Password</Label>
-                    <InputGroup className="w-full ">
+                    <Label>পাসওয়ার্ড</Label>
+                    <InputGroup className="w-full">
                         <InputGroup.Input
                             className="w-full "
                             type={isVisible ? "text" : "password"}
-                            placeholder="Enter your password" 
+                            placeholder="পাসওয়ার্ড লিখুন" 
                         />
                         <InputGroup.Suffix className="pe-0">
                             <Button
@@ -134,22 +134,21 @@ const SignInPage = () => {
 
 
 
-                {/* buttons */}
-                <div className="flex gap-2">
+                <div className="flex justify-center gap-2">
                     <Button type="submit">
+                        সাইন ইন করুন
+                    </Button>
 
-                        Sign In
-                    </Button>
-                    <Button type="reset" variant="secondary">
-                        Reset
-                    </Button>
+                   
                 </div>
 
-                <h2>Forgot Password? <Link href="/forgot-password" className="text-blue-600 font-medium">CLICK HERE</Link></h2>
+                <h2 className="text-center">পাসওয়ার্ড ভুলে গেছেন ?  
+                    <Link href="/forgot-password" className="text-blue-600 font-medium">CLICK HERE</Link>
+                </h2>
 
-                <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
+                {/* <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
                 <Button onClick={handleGithubSignIn}>Sign In with Github</Button>
-                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button>
+                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button> */}
             </Form>
         </div>
     );

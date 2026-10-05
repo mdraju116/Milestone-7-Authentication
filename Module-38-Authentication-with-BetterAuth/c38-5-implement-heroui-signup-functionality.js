@@ -3,6 +3,14 @@
 
 and=>See sign-up/page.tsx 
 
+		-go to : https://heroui.com/en/docs/react/components/form
+		-and copy the full form , 
+		-paste to signup/page.tsx and then modify
+
+NB: this code had changed after module-39, so this is primary sign-up,
+		see main projects sign-up/page.tsx for update one
+
+=>sign-up/page.tsx  
 "use client";
 import { signUp } from "@/lib/auth-client";
 import { Button, Description,InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";

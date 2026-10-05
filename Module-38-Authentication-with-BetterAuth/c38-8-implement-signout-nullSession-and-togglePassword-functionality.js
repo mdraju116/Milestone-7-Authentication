@@ -4,6 +4,12 @@
 
 1.=>Navbar.tsx 
 
+"use client"
+
+import { useState } from "react";
+import { Link, Button, Spinner } from "@heroui/react";
+import { signOut, useSession } from "@/lib/auth-client";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

@@ -1,77 +1,71 @@
 "use client";
-import { signIn } from "@/lib/auth-client";
-import { Button, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { signUp } from "@/lib/auth-client";
+import { Button, Description, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import { toast } from "react-toastify";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
+const SignUpPage = () => {
 
-const SignInPage = () => {
+    const router = useRouter();
 
-    //get data from the form
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        //get data from the form
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        
-        // console.log("Data from the form:", data);
+        console.log("Data from the form:", data);
+
 
         //send data to mongodb
-        const { data: responseData, error } = await signIn.email({
+        const { data: responseData, error } = await signUp.email({
+            name: String(data.name ?? ""),
             email: String(data.email ?? ""),
             password: String(data.password ?? ""),
-            rememberMe: true,
-            callbackURL: "/"
+            image:String(data.image ?? ""),
+            //callbackURL: "/sign-in"   //not working ,that's why using router
+            //redirectTo: "/sign-in",   //we can use this too
         });
+
 
         if (error) {
             console.log(error);
-            toast.error("Failed to sign in.")
+            toast.error(`Error: ${error}`);
             return;
         }
-        toast.success("Successfully Signed In.")
+        toast.success("Successfully Signed Up.");
+        toast.info("Verify Your Email first");
+        router.push("/sign-in"); //to move from sign-up page
 
-        console.log("After submit", responseData, error);
+
+        console.log("After signed-up", responseData, error);
     };
-
-
-    //google sign In
-     const handleGoogleSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "google"
-
-        })
-        console.log("After google sign in", resData)
-     }
-
-     //github sign In
-      const handleGithubSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "github"
-        })
-        console.log("After Github sign in", resData)
-     }
-     
-    //discord sign In
-     const handleDiscordSignIn =async()=>{
-        const resData =await signIn.social({
-            provider : "discord"
-        })
-        console.log("After Github sign in", resData)
-     }
-
 
     //togglePassword-c38-8
     const [isVisible, setIsVisible] = useState(false);
 
 
-
     return (
         <div className="flex items-center justify-center mt-10">
+            <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
 
-            <Form className="flex  w-88 flex-col gap-4" onSubmit={onSubmit}>
+                <TextField
+                    isRequired
+                    name="name"
+                    validate={(value) => {
+                        if (value.length < 3) {
+                            return "Name must be at least 3 characters";
+                        }
+                        return null;
+                    }}
+                >
+                    <Label>নাম</Label>
+                    <Input placeholder="আপনার নাম লিখুন" />
+                    <FieldError />
+                </TextField>
+
                 <TextField
                     isRequired
                     name="email"
@@ -83,10 +77,25 @@ const SignInPage = () => {
                         return null;
                     }}
                 >
-                    <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Label>ইমেইল</Label>
+                    <Input placeholder="আপনার ইমেইল লিখুন" />
                     <FieldError />
                 </TextField>
+
+                {/* Image Field*/}
+                <TextField
+                    isRequired
+                    name="image"
+                    type="url"
+                    validate={() => {
+
+                    }}
+                >
+                    <Label>ছবি</Label>
+                    <Input placeholder=" আপনার ছবির লিংক দিন" />
+                    <FieldError />
+                </TextField>
+
 
 
                 {/* password with toggle eye-c38-8 */}
@@ -108,12 +117,12 @@ const SignInPage = () => {
                         return null;
                     }}
                 >
-                    <Label>Password</Label>
-                    <InputGroup className="w-full ">
+                    <Label>পাসওয়ার্ড</Label>
+                    <InputGroup className="w-full">
                         <InputGroup.Input
-                            className="w-full "
+                            className=" w-full"
                             type={isVisible ? "text" : "password"}
-                            placeholder="Enter your password" 
+                            placeholder="পাসওয়ার্ড লিখুন"
                         />
                         <InputGroup.Suffix className="pe-0">
                             <Button
@@ -125,34 +134,32 @@ const SignInPage = () => {
                             >
                                 {isVisible ? <Eye className="size-4" /> : <EyeSlash className="size-4" />}
                             </Button>
-                            
+
                         </InputGroup.Suffix>
-                    </InputGroup>  
+                    </InputGroup>
+                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
 
 
 
 
-                {/* buttons */}
-                <div className="flex gap-2">
-                    <Button type="submit">
 
-                        Sign In
+                <div className="flex justify-center gap-2">
+                    <Button type="submit">
+                        সাইন আপ করুন
                     </Button>
-                    <Button type="reset" variant="secondary">
-                        Reset
-                    </Button>
+
+                   
                 </div>
 
-                <h2>Forgot Password? <Link href="/forgot-password" className="text-blue-600 font-medium">CLICK HERE</Link></h2>
 
-                <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
-                <Button onClick={handleGithubSignIn}>Sign In with Github</Button>
-                <Button onClick={handleDiscordSignIn}>Sign In with Discord</Button>
             </Form>
+
+
+
         </div>
     );
 };
 
-export default SignInPage;
+export default SignUpPage;

@@ -3,6 +3,17 @@
 
 and=>See sign-in/page.tsx 
 
+		-go to : https://heroui.com/en/docs/react/components/form
+		-and copy the full form , 
+		-paste to signin/page.tsx and then modify
+		
+		-install : react-toastify and gravity-ui/icons
+
+NB: this code had changed after module-39, so this is primary sign-in,
+		see main projects sign-in/page.tsx for update one
+
+=>sign-in/page.tsx  
+
 "use client";
 import { signIn } from "@/lib/auth-client";
 import { Button, InputGroup, FieldError, Form, Input, Label, TextField } from "@heroui/react";
@@ -43,7 +54,7 @@ const SignInPage = () => {
     return (
         <div className="flex items-center justify-center mt-10">
 
-            <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+            <Form className="flex w-88 flex-col gap-4" onSubmit={onSubmit}>
                 <TextField
                     isRequired
                     name="email"
@@ -82,9 +93,9 @@ const SignInPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <InputGroup>
+                    <InputGroup className="w-full">
                         <InputGroup.Input
-                            className="w-full max-w-70"
+                            className="w-full"
                             type={isVisible ? "text" : "password"}
                             placeholder="Enter your password" 
                         />
