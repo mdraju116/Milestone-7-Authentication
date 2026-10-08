@@ -36,7 +36,10 @@
                     -Add URI : 
                         -copy this : http://localhost:3000/api/auth/callback/google  from better auth site(https://better-auth.com/docs/authentication/google)
                         -and paste here
-                        NB: After deploy in vercel add a new redirect URI like this,  otherwise the login with google will not work
+
+                         NB: After deploy in vercel add a new redirect URI like this,  otherwise the login with google will not work
+                        -simply go to console page/clients/add redirect URI/save
+                        -https://bangla-news-one.vercel.app/api/auth/callback/google
 
                 -Create
 

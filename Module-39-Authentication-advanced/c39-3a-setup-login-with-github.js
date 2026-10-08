@@ -11,8 +11,11 @@
             -Application name : NextJsBetterAuth
             -Homepage URL : http://localhost:3000/
             -Redirect URI : http://localhost:3000/api/auth/callback/github
+            
             NB: After deploy in vercel add a new redirect URI like this,  otherwise the login with github will not work
-            -
+            -simply go to OAuth page and add this , update application
+            -https://bangla-news-one.vercel.app/api/auth/callback/github
+
             -Allow wildcard matching
         -click on Register Applicaton
 
