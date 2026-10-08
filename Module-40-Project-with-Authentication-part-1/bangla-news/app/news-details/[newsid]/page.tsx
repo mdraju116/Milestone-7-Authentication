@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 const NewsDetailsPage = async ({ params }: { params: Promise<{ newsid: string }> }) => {
 
@@ -8,6 +9,10 @@ const NewsDetailsPage = async ({ params }: { params: Promise<{ newsid: string }>
     const news = await response.json();
     const newsDetails = news.data;
     console.log(newsDetails)
+
+    if(!newsDetails){
+        notFound()
+    }
 
     // https://news-api-v2.vercel.app/api/article/cqrm9070z91vo
     

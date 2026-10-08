@@ -1,5 +1,6 @@
 import OtherNewsCard from "@/app/components/homepage/OtherNewsCard";
 import { ArticleType } from "@/app/page";
+import { notFound } from "next/navigation";
 
 
 
@@ -11,6 +12,10 @@ const CategoryDetailsPage = async ({params}: { params: Promise<{ categoryid: str
     const category = await response.json();
     const categoryDetails=category.data;
     // console.log(categoryDetails) ;
+
+    if(!categoryDetails){
+        notFound();
+    }
 
     return (
         <div className="mt-4">
