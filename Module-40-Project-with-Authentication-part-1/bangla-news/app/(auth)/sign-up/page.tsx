@@ -106,9 +106,7 @@ const SignUpPage = () => {
                     isRequired
                     name="image"
                     type="url"
-                    validate={() => {
-
-                    }}
+                    
                 >
                     <Label>ছবি</Label>
                     <Input placeholder=" আপনার ছবির লিংক দিন" />
